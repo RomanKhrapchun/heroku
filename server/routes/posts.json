@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "text": "first post",
+    "author": "Roman",
+    "createdAt": "2022/1/27",
+    "isPublished": true
+  },
+  {
+    "id": 2,
+    "text": "second post",
+    "author": "Sergii",
+    "createdAt": "2022/2/28",
+    "isPublished": false
+  },
+  {
+    "id": 3,
+    "text": "third post",
+    "author": "Svitlana",
+    "createdAt": "2022/3/29",
+    "isPublished": true
+  }
+]
