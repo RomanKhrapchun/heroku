@@ -5,212 +5,223 @@
     <title>Site name</title>
 </head>
 <body>
+    <form action="results.html" method="GET" enctype="multipart/form-data">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" min="1" max="200" step="5">
+        </div>
+        <div>
+            <label for="date">Birthdate</label>
+            <input type="date" name="date" id="date" min="2019-06-10">
+        </div>
+        <div>
+            Favorite Food
+            <div>
+                <label for="banana">Banana</label>
+                <input type="checkbox" name="banana" id="banana">
+            </div>
+            <div>
+                <label for="apple">Apple</label>
+                <input type="checkbox" name="apple" id="apple">
+            </div>
+        </div>
+        <div>
+            Gender
+            <div>
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="male" value="male">
+            </div>
+            <div>
+                <label for="female">Female</label>
+                <input type="radio" name="gender" id="female" value="female">
+            </div>
+        </div>
+        <div>
+            <label for="eyeColor">Eye Color</label>
+            <select name="eyeColor" id="eyeColor" multiple>
+                <option value="Green">Green</option>
+                <option label="Red" value="Red"></option>
+            </select>
+        </div>
+        <div>
+            <label for="bio">Bio</label>
+            <textarea id="bio" name="bio"></textarea>
+        </div>
+        <input type="hidden" name="hidden" value="hi">
+        <div>
+            <label for="file">File</label>
+            <input id="file" type="file" name="file">
+        </div>
+        <div>
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" id="phone">
+        </div>
+        <div>
+            <label for="url">URL</label>
+            <input type="url" name="url" id="url">
+        </div>
+        <div>
+            <label for="color">Color</label>
+            <input type="color" name="color" id="color">
+        </div>
+        <div>
+            <label>
+                Password
+                <input type="password" name="password" required>
+            </label>
+        </div>
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+    </form>
     <table border="1"
-           align="center"
-           rules="rows"
-           style="width:60%;">
+           bgcolor="#7FFFD4"
+           height="100"
+           cellpadding="10"
+           style="width:100%; border-radius:5px;">
         <tr>
-            <td>
-                <table border="1"
-                       background="images/168.png"
-                       bgcolor="#7FFFD4"
-                       cellpadding="10"
-                       style="width:100%; border-radius:5px;">
-                    <tr>
-                        <th>
-                            <h1></h1>
-                            <h3></h3>
-                        </th>
-                    </tr>
-                </table>
-
-                <table border="1"
-                       bgcolor="#e6e6fa"
-                       cellpadding="10"
-                       style="width:100%; border-radius:5px;">
-                    <tr>
-                        <td rowspan="2"
-                            style="width:80%">
-                            <h2></h2>
-                            <p style="text-indent:20px">
-                            </p>
-
-                            <p style="text-indent:20px">
-                            </p>
-                        </td>
-
-                        <td bgcolor="#e6e6fa">
-                            <h3>Menu</h3>
-                            <p>
-                                <a href="">
-                                </a>
-                            </p>
-                            <p>
-                                <a href="">
-                                </a>
-                            </p>
-                            <p>
-                                <a href="">
-                                </a>
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td bgcolor="#e6e6fa"
-                            align="center">
-                            <h3></h3>
-                            <p></p>
-                        </td>
-                    </tr>
-                </table>
-
-                <table border="1"
-                       bgcolor="#7FFFD4"
-                       height="100"
-                       cellpadding="10"
-                       style="width:100%; border-radius:5px;">
-                    <tr>
-                        <th>
-                            <h3>For comments</h3>
-                            <body>
-                                <div class="top-bar">
+            <th>
+                <h3>For comments</h3>
+                <body>
+                    </div>
+                    <div class="main">
+                        <div class="header">
+                        </div>
+                        <textarea></textarea>
+                        <button>add comment</button>
+                        <div class="comments">
+                        </div>
+                    </div>
+                    <script src="data.js"></script>
+                    <script>
+                        var id = window.location.search.slice(1);
+                        var thread = threads.find(t => t.id == id);
+                        var header = document.querySelector('.header');
+                        var headerHtml = `
+                                <h4 class="title">
+                                    ${thread.title}
+                                </h4>
+                                <div class="bottom">
+                                    <p class="timestamp">
+                                        ${new Date(thread.date).toLocaleString()}
+                                    </p>
+                                    <p class="comment-count">
+                                        ${thread.comments.length} comments
+                                    </p>
                                 </div>
-                                <div class="main">
-                                    <div class="header">
+                            `
+                        header.insertAdjacentHTML('beforeend', headerHtml)
+
+                        function addComment(comment) {
+                            var commentHtml = `
+                                    <div class="comment">
+                                        <div class="top-comment">
+                                            <p class="user">
+                                                ${comment.author}
+                                            </p>
+                                            <p class="comment-ts">
+                                                ${new Date(comment.date).toLocaleString()}
+                                            </p>
+                                        </div>
+                                        <div class="comment-content">
+                                            ${comment.content}
+                                        </div>
                                     </div>
-                                    <textarea></textarea>
-                                    <button>add comment</button>
-                                    <div class="comments">
-                                    </div>
-                                </div>
-                                <script src="data.js"></script>
-                                <script>
-                                    var id = window.location.search.slice(1);
-                                    var thread = threads.find(t => t.id == id);
-                                    var header = document.querySelector('.header');
-                                    var headerHtml = `
-                                            <h4 class="title">
-                                                ${thread.title}
-                                            </h4>
-                                            <div class="bottom">
-                                                <p class="timestamp">
-                                                    ${new Date(thread.date).toLocaleString()}
-                                                </p>
-                                                <p class="comment-count">
-                                                    ${thread.comments.length} comments
-                                                </p>
-                                            </div>
-                                        `
-                                    header.insertAdjacentHTML('beforeend', headerHtml)
+                                `
+                            comments.insertAdjacentHTML('beforeend', commentHtml);
+                        }
 
-                                    function addComment(comment) {
-                                        var commentHtml = `
-                                                <div class="comment">
-                                                    <div class="top-comment">
-                                                        <p class="user">
-                                                            ${comment.author}
-                                                        </p>
-                                                        <p class="comment-ts">
-                                                            ${new Date(comment.date).toLocaleString()}
-                                                        </p>
-                                                    </div>
-                                                    <div class="comment-content">
-                                                        ${comment.content}
-                                                    </div>
-                                                </div>
-                                            `
-                                        comments.insertAdjacentHTML('beforeend', commentHtml);
-                                    }
+                        var comments = document.querySelector('.comments');
+                        for (let comment of thread.comments) {
+                            addComment(comment);
+                        }
 
-                                    var comments = document.querySelector('.comments');
-                                    for (let comment of thread.comments) {
-                                        addComment(comment);
-                                    }
+                        var btn = document.querySelector('button');
+                        btn.addEventListener('click', function () {
+                            var txt = document.querySelector('textarea');
+                            var comment = {
+                                content: txt.value,
+                                date: Date.now(),
+                                author: 'Aaron'
+                            }
+                            addComment(comment);
+                            txt.value = '';
+                            thread.comments.push(comment);
+                            localStorage.setItem('threads', JSON.stringify(threads));
+                        })
+                    </script>
+                    <style>
+                        body {
+                            margin: 10px 60px;
+                        }
 
-                                    var btn = document.querySelector('button');
-                                    btn.addEventListener('click', function () {
-                                        var txt = document.querySelector('textarea');
-                                        var comment = {
-                                            content: txt.value,
-                                            date: Date.now(),
-                                            author: 'Aaron'
-                                        }
-                                        addComment(comment);
-                                        txt.value = '';
-                                        thread.comments.push(comment);
-                                        localStorage.setItem('threads', JSON.stringify(threads));
-                                    })
-                                </script>
-                                <style>
-                                    body {
-                                        margin: 10px 60px;
-                                    }
+                        a {
+                            text-decoration: none;
+                            color: black;
+                        }
 
-                                    a {
-                                        text-decoration: none;
-                                        color: black;
-                                    }
+                        h1, h4, ol {
+                            margin: 0;
+                        }
 
-                                    h1, h4, ol {
-                                        margin: 0;
-                                    }
+                        p {
+                            margin: 5px 0;
+                        }
 
-                                    p {
-                                        margin: 5px 0;
-                                    }
+                        textarea {
+                            width: 80%;
+                            height: 80px;
+                        }
 
-                                    textarea {
-                                        width: 80%;
-                                        height: 80px;
-                                    }
+                        button {
+                            display: block;
+                            margin: 20px 0;
+                        }
 
-                                    button {
-                                        display: block;
-                                        margin: 10px 0;
-                                    }
+                        .main {
+                            background-color: #F6F6EF;
+                            padding: 10px 40px;
+                        }
 
-                                    .top-bar {
-                                        background-color: skyblue;
-                                        padding: 0 40px;
-                                    }
+                        .comments {
+                            margin: 40px 0;
+                        }
 
-                                    .main {
-                                        background-color: #F6F6EF;
-                                        padding: 10px 40px;
-                                    }
+                        .comment {
+                            margin: 10px 0;
+                        }
 
-                                    .comments {
-                                        margin: 40px 0;
-                                    }
+                        .row {
+                            padding: 5px 0;
+                        }
 
-                                    .comment {
-                                        margin: 10px 0;
-                                    }
+                        .bottom, .top-comment {
+                            display: flex;
+                            color: grey;
+                            font-size: 12px;
+                        }
 
-                                    .row {
-                                        padding: 5px 0;
-                                    }
+                        .timestamp {
+                            padding-right: 10px;
+                        }
 
-                                    .bottom, .top-comment {
-                                        display: flex;
-                                        color: grey;
-                                        font-size: 12px;
-                                    }
-
-                                    .timestamp {
-                                        padding-right: 10px;
-                                    }
-
-                                    .comment-ts {
-                                        padding-left: 10px;
-                                    }
-                                </style>
-                            </body>
-                        </th>
-                    </tr>
-                </table>
-            </td>
+                        .comment-ts {
+                            padding-left: 10px;
+                        }
+                    </style>
+                </body>
+            </th>
         </tr>
     </table>
+    </td>
+    </tr>
+    </table>
 </body>
-</html></html>
+</html>
