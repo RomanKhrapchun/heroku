@@ -23,17 +23,6 @@
             <input type="date" name="date" id="date" min="2019-06-10">
         </div>
         <div>
-            Favorite Food
-            <div>
-                <label for="banana">Banana</label>
-                <input type="checkbox" name="banana" id="banana">
-            </div>
-            <div>
-                <label for="apple">Apple</label>
-                <input type="checkbox" name="apple" id="apple">
-            </div>
-        </div>
-        <div>
             Gender
             <div>
                 <label for="male">Male</label>
@@ -43,13 +32,6 @@
                 <label for="female">Female</label>
                 <input type="radio" name="gender" id="female" value="female">
             </div>
-        </div>
-        <div>
-            <label for="eyeColor">Eye Color</label>
-            <select name="eyeColor" id="eyeColor" multiple>
-                <option value="Green">Green</option>
-                <option label="Red" value="Red"></option>
-            </select>
         </div>
         <div>
             <label for="bio">Bio</label>
@@ -105,36 +87,36 @@
                         var thread = threads.find(t => t.id == id);
                         var header = document.querySelector('.header');
                         var headerHtml = `
-                                <h4 class="title">
-                                    ${thread.title}
-                                </h4>
-                                <div class="bottom">
-                                    <p class="timestamp">
-                                        ${new Date(thread.date).toLocaleString()}
-                                    </p>
-                                    <p class="comment-count">
-                                        ${thread.comments.length} comments
-                                    </p>
-                                </div>
-                            `
+                                                    <h4 class="title">
+                                                        ${thread.title}
+                                                    </h4>
+                                                    <div class="bottom">
+                                                        <p class="timestamp">
+                                                            ${new Date(thread.date).toLocaleString()}
+                                                        </p>
+                                                        <p class="comment-count">
+                                                            ${thread.comments.length} comments
+                                                        </p>
+                                                    </div>
+                                                `
                         header.insertAdjacentHTML('beforeend', headerHtml)
 
                         function addComment(comment) {
                             var commentHtml = `
-                                    <div class="comment">
-                                        <div class="top-comment">
-                                            <p class="user">
-                                                ${comment.author}
-                                            </p>
-                                            <p class="comment-ts">
-                                                ${new Date(comment.date).toLocaleString()}
-                                            </p>
-                                        </div>
-                                        <div class="comment-content">
-                                            ${comment.content}
-                                        </div>
-                                    </div>
-                                `
+                                                        <div class="comment">
+                                                            <div class="top-comment">
+                                                                <p class="user">
+                                                                    ${comment.author}
+                                                                </p>
+                                                                <p class="comment-ts">
+                                                                    ${new Date(comment.date).toLocaleString()}
+                                                                </p>
+                                                            </div>
+                                                            <div class="comment-content">
+                                                                ${comment.content}
+                                                            </div>
+                                                        </div>
+                                                    `
                             comments.insertAdjacentHTML('beforeend', commentHtml);
                         }
 
